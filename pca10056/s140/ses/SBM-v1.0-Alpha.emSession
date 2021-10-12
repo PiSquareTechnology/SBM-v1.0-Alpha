@@ -1,0 +1,55 @@
+<!DOCTYPE CrossStudio_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints groups="Breakpoints" active_group="Breakpoints">
+  <BreakpointListItem trigger="" line="21" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="2" filename="ble_sbm.c" useHWbreakpoint="false"/>
+  <BreakpointListItem trigger="" line="273" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="2" filename="ble_sbm.c" useHWbreakpoint="false"/>
+  <BreakpointListItem trigger="" line="42" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="2" filename="ble_sbm.h" useHWbreakpoint="false"/>
+  <BreakpointListItem trigger="" line="99" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="2" filename="ble_sbm.h" useHWbreakpoint="false"/>
+  <BreakpointListItem trigger="" line="248" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="2" filename="../../../main.c" useHWbreakpoint="false"/>
+  <BreakpointListItem trigger="" line="779" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="2" filename="../../../main.c" useHWbreakpoint="false"/>
+ </Breakpoints>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow bufferHeight="-1" addressSpace="" addressText="" bufferWidth="-1"/>
+ </FrameBufferWindow>
+ <Memory1/>
+ <Memory2/>
+ <Memory3/>
+ <Memory4/>
+ <Project>
+  <ProjectSessionItem path="SBM-v1.0-Alpha"/>
+  <ProjectSessionItem path="SBM-v1.0-Alpha;SBM-v1.0-Alpha"/>
+  <ProjectSessionItem path="SBM-v1.0-Alpha;SBM-v1.0-Alpha;Application"/>
+  <ProjectSessionItem path="SBM-v1.0-Alpha;SBM-v1.0-Alpha;nRF_BLE"/>
+ </Project>
+ <Register1/>
+ <Register2/>
+ <Register3/>
+ <Register4/>
+ <Threads>
+  <ThreadsWindow showLists=""/>
+ </Threads>
+ <TraceWindow>
+  <Trace enabled="Yes"/>
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never"/>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never"/>
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never"/>
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never"/>
+ </Watch4>
+ <Files>
+  <SessionOpenFile windowGroup="DockEditLeft" x="18" y="139" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="128" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="35" y="11451" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="11433" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="30" y="191" useTextEdit="1" openedFrom="D:/Nordic/nRF5_SDK_17.1.0/examples/Nordic_Projects/SBM-v1.0-Alpha/main.c" useBinaryEdit="0" left="0" path="ble_sbm.c" selected="0" top="161" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="2" y="59" useTextEdit="1" openedFrom="D:/Nordic/nRF5_SDK_17.1.0/examples/Nordic_Projects/SBM-v1.0-Alpha/pca10056/s140/ses/ble_sbm.c" useBinaryEdit="0" left="0" path="ble_sbm.h" selected="0" top="38" codecName="Default"/>
+ </Files>
+ <ARMCrossStudioWindow activeProject="SBM-v1.0-Alpha" fileDialogDefaultFilter="*.c;*.cpp;*.cxx;*.cc;*.h;*.hpp;*.hxx" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="D:/Nordic/nRF5_SDK_17.1.0/components/libraries/uart" debugSearchPath="" autoConnectCapabilities="3199"/>
+</session>
