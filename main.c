@@ -50,7 +50,7 @@ const uint8_t BQ34110_TEMP_ADDR[2] =          {0x06, 0x07};     //  Reg Address 
 const uint8_t BQ34110_CURR_ADDR[2] =          {0x0C, 0x0D};     //  Reg Address of Current
 const uint8_t BQ34110_TIMETOFULL_ADDR[2] =    {0x18, 0x19};
 const uint8_t BQ34110_TIMETOEMPTY_ADDR[2] =   {0x16, 0x17};
- uint16_t rxBuffer;
+volatile uint8_t rxBuffer;
 
 
 /* Indicates if operation on TWI has ended. */
@@ -88,7 +88,7 @@ static const nrf_drv_twi_t m_twi = NRF_DRV_TWI_INSTANCE(TWI_INSTANCE_ID);
 #define DEAD_BEEF                       0xDEADBEEF                              /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 static uint8_t m_custom_value = 0;
 APP_TIMER_DEF(m_notification_timer_id);
-BLE_SBM_DEF(m_sbm);
+BLE_SBM_DEF(m_sbm, NRF_SDH_BLE_TOTAL_LINK_COUNT);
 NRF_BLE_GATT_DEF(m_gatt);                                                       /**< GATT module instance. */
 NRF_BLE_QWR_DEF(m_qwr);                                                         /**< Context for the Queued Write module.*/
 BLE_ADVERTISING_DEF(m_advertising);                                             /**< Advertising module instance. */
@@ -155,11 +155,14 @@ static void notification_timeout_handler(void * p_context)
 {
     UNUSED_PARAMETER(p_context);
     ret_code_t err_code;
-    
+    //uint16_t bytesToSend;
+    //uint8_t valueToBeSend[50];
+    //bytesToSend = sprintf(valueToBeSend, "Voltage = %d", rxBuffer);
     // Increment the value of m_custom_value before nortifing it.
-    m_custom_value++;
-    
-    err_code = ble_sbm_custom_value_update(&m_sbm, m_custom_value);
+    //m_custom_value++;
+
+    //err_code = ble_sbm_data_send(&m_sbm, valueToBeSend, &bytesToSend, m_conn_handle);
+    err_code = ble_sbm_custom_value_update(&m_sbm, rxBuffer);
     APP_ERROR_CHECK(err_code);
 }
 /**@brief Function for the Timer initialization.
@@ -358,11 +361,11 @@ static void conn_params_init(void)
  */
 static void application_timers_start(void)
 {
-    /* YOUR_JOB: Start your timers. below is an example of how to start a timer.
+#if 0
        ret_code_t err_code;
        err_code = app_timer_start(m_app_timer_id, TIMER_INTERVAL, NULL);
-       APP_ERROR_CHECK(err_code); */
-
+       APP_ERROR_CHECK(err_code); 
+#endif
 }
 
 
@@ -673,7 +676,7 @@ static void idle_state_handle(void)
  */
 __STATIC_INLINE void data_handler(uint8_t temp)
 {
-    NRF_LOG_INFO("Temperature: %d", rxBuffer);
+    NRF_LOG_INFO("Voltage: %d", rxBuffer);
 }
 
 /**
@@ -727,7 +730,7 @@ static void read_sensor_data(uint8_t addr[2])
     APP_ERROR_CHECK(err_code);
     while (m_xfer_done == false);
     /* Read 1 byte from the specified address - skip 3 bits dedicated for fractional part of temperature. */
-    err_code = nrf_drv_twi_rx(&m_twi, BQ34110_DEV_ADDR, (uint8_t*)&rxBuffer, 4);
+    err_code = nrf_drv_twi_rx(&m_twi, BQ34110_DEV_ADDR, (uint8_t*)&rxBuffer, 1);
     APP_ERROR_CHECK(err_code);
 }
 /**@brief Function for starting advertising.
@@ -776,7 +779,7 @@ int main(void)
     // Enter main loop.
     for (;;)
     {
-        //read_sensor_data(BQ34110_TIMETOEMPTY_ADDR);
+        read_sensor_data(BQ34110_SOC_ADDR);
         nrf_delay_ms(500);  
         idle_state_handle();
     }

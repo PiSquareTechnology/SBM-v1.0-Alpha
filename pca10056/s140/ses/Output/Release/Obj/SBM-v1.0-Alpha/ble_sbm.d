@@ -1,5 +1,6 @@
 Output/Release/Obj/SBM-v1.0-Alpha/ble_sbm.o: \
  D:\Nordic\nRF5_SDK_17.1.0\examples\Nordic_Projects\SBM-v1.0-Alpha\pca10056\s140\ses\ble_sbm.c \
+ D:\Nordic\nRF5_SDK_17.1.0\examples\Nordic_Projects\SBM-v1.0-Alpha\pca10056\s140\ses\ble_sbm.h \
  ../../../../../../components/libraries/util/sdk_common.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.62/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.62/include/stdbool.h \
@@ -81,4 +82,7 @@ Output/Release/Obj/SBM-v1.0-Alpha/ble_sbm.o: \
  ../../../../../../components/libraries/log/src/nrf_log_internal.h \
  ../../../../../../components/libraries/log/nrf_log_instance.h \
  ../../../../../../components/libraries/log/nrf_log_types.h \
- ../../../../../../components/libraries/log/nrf_log_types.h
+ ../../../../../../components/libraries/log/nrf_log_types.h \
+ ../../../../../../components/ble/ble_link_ctx_manager/ble_link_ctx_manager.h \
+ ../../../../../../components/ble/common/ble_conn_state.h \
+ ../../../../../../components/libraries/atomic/nrf_atomic.h

@@ -127,4 +127,6 @@ Output/Release/Obj/SBM-v1.0-Alpha/main.o: \
  ../../../../../../modules/nrfx/hal/nrf_twi.h \
  ../../../../../../components/libraries/uart/app_uart.h \
  ../../../../../../components/libraries/delay/nrf_delay.h \
- D:\Nordic\nRF5_SDK_17.1.0\examples\Nordic_Projects\SBM-v1.0-Alpha\pca10056\s140\ses\ble_sbm.h
+ D:\Nordic\nRF5_SDK_17.1.0\examples\Nordic_Projects\SBM-v1.0-Alpha\pca10056\s140\ses\ble_sbm.h \
+ D:\Nordic\nRF5_SDK_17.1.0\examples\Nordic_Projects\SBM-v1.0-Alpha\pca10056\s140\ses\ble_sbm.h \
+ ../../../../../../components/ble/ble_link_ctx_manager/ble_link_ctx_manager.h

@@ -1,13 +1,28 @@
 #ifndef __BLE_SBM_H__
 #define __BLE_SBM_H__
-
-
+#include "sdk_common.h"
+#include "ble_srv_common.h"
+#include "ble_sbm.h"
+#include <string.h>
+#include "nrf_gpio.h"
+#include "boards.h"
+#include "nrf_log.h"
+#include "ble_link_ctx_manager.h"
 /**@brief   Macro for defining a ble_sbm instance.
  *
  * @param   _name   Name of the instance.
  * @hideinitializer
  */
-#define BLE_SBM_DEF(_name)                                                                          \
+
+
+#define BLE_SBM_DEF(_name, _sbm_max_clients)                                                        \
+      BLE_LINK_CTX_MANAGER_DEF(CONCAT_2(_name, _link_ctx_storage),                                  \
+      (_sbm_max_clients),                                                                           \
+      sizeof(ble_sbm_client_context_t));                                                            \
+static ble_sbm_t _name =                                                                            \
+{                                                                                                   \
+      .p_link_ctx_storage = &CONCAT_2(_name, _link_ctx_storage)                                     \
+} ;                                                                                                 \ 
 static ble_sbm_t _name;                                                                             \
 NRF_SDH_BLE_OBSERVER(_name ## _obs,                                                                 \
                      BLE_HRS_BLE_OBSERVER_PRIO,                                                     \
@@ -54,11 +69,15 @@ struct ble_sbm_s
 {
     ble_sbm_evt_handler_t         evt_handler;                    /**< Event handler to be called for handling events in the Custom Service. */
     uint16_t                      service_handle;                 /**< Handle of Custom Service (as provided by the BLE stack). */
+    blcm_link_ctx_storage_t     * const p_link_ctx_storage;       /**< Pointer to link context storage with handles of all current connections and its context. */
     ble_gatts_char_handles_t      custom_value_handles;           /**< Handles related to the Custom Value characteristic. */
     uint16_t                      conn_handle;                    /**< Handle of the current connection (as provided by the BLE stack, is BLE_CONN_HANDLE_INVALID if not in a connection). */
     uint8_t                       uuid_type; 
 };
-
+typedef struct 
+{
+  bool is_notification_enabled;
+}ble_sbm_client_context_t;
 
 /**@brief Function for initializing the Custom Service.
  *
@@ -118,5 +137,5 @@ static void on_write(ble_sbm_t * p_sbm, ble_evt_t const * p_ble_evt);
  */
 
 uint32_t ble_sbm_custom_value_update(ble_sbm_t * p_sbm, uint8_t custom_value);
-
+uint32_t ble_sbm_data_send(ble_sbm_t *p_sbm, uint8_t *p_data, uint16_t *p_length, uint16_t conn_handle);
 #endif

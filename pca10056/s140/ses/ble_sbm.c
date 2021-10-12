@@ -1,14 +1,5 @@
-/* This code belongs in ble_sbm.c*/
-#include "sdk_common.h"
-#include "ble_srv_common.h"
-#include "ble_sbm.h"
-#include <string.h>
-#include "nrf_gpio.h"
-#include "boards.h"
-#include "nrf_log.h"
 
-
-/* This code belongs in ble_sbm.c*/
+#include "D:\Nordic\nRF5_SDK_17.1.0\examples\Nordic_Projects\SBM-v1.0-Alpha\pca10056\s140\ses\ble_sbm.h"
 uint32_t ble_sbm_init(ble_sbm_t * p_sbm, const ble_sbm_init_t * p_sbm_init)
 {
     if (p_sbm == NULL || p_sbm_init == NULL)
@@ -255,3 +246,33 @@ uint32_t ble_sbm_custom_value_update(ble_sbm_t * p_sbm, uint8_t custom_value)
 
     return err_code;
 }
+#if 0
+uint32_t ble_sbm_data_send(ble_sbm_t *p_sbm, uint8_t *p_data, uint16_t *p_length, uint16_t conn_handle)
+{
+    ret_code_t err_code;
+    ble_gatts_hvx_params_t hvx_params;
+    ble_sbm_client_context_t * p_client; 
+    VERIFY_PARAM_NOT_NULL(p_sbm); 
+    err_code = blcm_link_ctx_get(p_sbm->p_link_ctx_storage, conn_handle, (void *) &p_client);
+    VERIFY_SUCCESS(err_code); 
+    if ((conn_handle == BLE_CONN_HANDLE_INVALID) || (p_client == NULL))
+    {
+      return NRF_ERROR_NOT_FOUND;
+    } 
+    if (!p_client->is_notification_enabled)
+    {
+      return NRF_ERROR_INVALID_STATE;
+    } 
+    //if (*p_length > BLE_NUS_MAX_DATA_LEN)
+    //{
+    //  return NRF_ERROR_INVALID_PARAM;
+    //} 
+    memset(&hvx_params, 0, sizeof(hvx_params)); 
+    hvx_params.handle = p_sbm->custom_value_handles.value_handle;
+    hvx_params.p_data = p_data;
+    hvx_params.p_len = p_length;
+    hvx_params.type = BLE_GATT_HVX_NOTIFICATION; 
+    return sd_ble_gatts_hvx(conn_handle, &hvx_params);
+}
+
+#endif
